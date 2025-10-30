@@ -9,6 +9,7 @@ import { formatMinutesAdaptive, percent } from "@/lib/format";
 const COLORS: Record<CoarseType, string> = {
   Sleep: "#6b8e23",
   Work: "#2563eb",
+  PauseBetweenWork: "#ffd600", // distinct yellow for inherited pause
   Chores: "#ea580c",
   Leisure: "#9333ea",
   Uncategorized: "#64748b",
@@ -246,12 +247,21 @@ export default function DashboardPage() {
                   {Object.entries(activityTotals)
                     .sort((a, b) => b[1] - a[1])
                     .slice(0, 12)
-                    .map(([name, value]) => (
-                      <li key={name} className="flex items-center justify-between">
-                        <span className="truncate pr-2" title={name}>{name}</span>
-                        <span className="tabular-nums">{formatMinutesAdaptive(value)} ({percent(value, totals[selected])})</span>
-                      </li>
-                    ))}
+                    .map(([name, value]) => {
+                      // Sum inherited realpausa for this activity in filtered data
+                      const pauseTotal = filtered.filter((r) => r.activity === "realpausa" && r.inheritedFrom === name && r.coarse === selected).reduce((sum, r) => sum + r.minutes, 0);
+                      return (
+                        <li key={name} className="flex items-center justify-between">
+                          <span className="truncate pr-2" title={name}>{name}</span>
+                          <span className="tabular-nums">
+                            {formatMinutesAdaptive(value)} ({percent(value, totals[selected])})
+                            {pauseTotal > 0 && (
+                              <span className="ml-2 opacity-70">of which {formatMinutesAdaptive(pauseTotal)} is pause</span>
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
