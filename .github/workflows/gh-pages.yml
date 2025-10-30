@@ -37,6 +37,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+          cache-dependency-path: dashboard/pnpm-lock.yaml
 
       - name: Install dependencies
         run: cd dashboard && pnpm install
