@@ -1,0 +1,51 @@
+{
+  "coarse_types": [
+    "Sleep",
+    "Work",
+    "Chores",
+    "Leisure",
+    "Uncategorized"
+  ],
+  "activity_to_coarse": {
+    "Sleep": "Sleep",
+    "Cooking": "Chores",
+    "Cure": "Chores",
+    "svago": "Leisure",
+    "pause": "Leisure",
+    "PAI": "Work",
+    "AML": "Work",
+    "esplorazioni": "Work",
+    "chores": "Work",
+    "Sides": "Work",
+    "Marro": "Work",
+    "Zhijing": "Work",
+    "NLP": "Work",
+    "DJ": "Work",
+    "Moor": "Work",
+    "Big Data": "Work",
+    "Neural Sytems": "Work",
+    "Robots": "Work",
+    "Cloud": "Work",
+    "ASL": "Work",
+    "perception": "Work",
+    "finance": "Work",
+    "Large": "Work",
+    "Psycho": "Work",
+    "Object": "Work",
+    "Casa": "Chores",
+    "Exercise": "Chores",
+    "realpausa": "Leisure",
+    "People": "Uncategorized",
+    "Algolab": "Uncategorized"
+  },
+  "category_to_coarse": {
+    "course": "Work",
+    "work": "Work",
+    "svago": "Leisure",
+    "studio": "Work",
+    "Religion": "Chores"
+  },
+  "special_rules": {
+    "realpausa_inherit_between_work": true
+  }
+}
